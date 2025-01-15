@@ -52,7 +52,7 @@ class ComputeScore:
         aud, input_fs = sf.read(fpath) # aud = audio data as a np array; input_fs = sampling rate of audio file
         fs = sampling_rate
         if input_fs != fs:
-            audio = librosa.resample(aud, input_fs, fs) # Resample to the desired sampling rate
+            audio = librosa.resample(aud, orig_sr=input_fs, target_sr=fs) # Resample to the desired sampling rate
         else:
             audio = aud
         actual_audio_len = len(audio)
