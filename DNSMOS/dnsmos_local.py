@@ -124,7 +124,6 @@ def main(args):
     desired_fs = SAMPLING_RATE
     for d in tqdm(datasets):
         max_recursion_depth = 10
-        # audio_path = os.path.join(args.testset_dir, m)
         audio_path = d
         audio_clips_list = glob.glob(os.path.join(audio_path, "*.wav"))
         while len(audio_clips_list) == 0 and max_recursion_depth > 0:
