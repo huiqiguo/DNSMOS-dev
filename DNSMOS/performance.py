@@ -1,8 +1,5 @@
 # Usage:
-# python performance.py -f .\csv\readspeech.csv -n readspeech
-# python performance.py -f .\csv\readspeech_p.csv -n readspeech -p
-# python performance.py -f .\csv\vocalset48khzmono.csv -n vocalset48khzmono
-# python performance.py -f .\csv\vocalset48khzmono_p.csv -n vocalset48khzmono -p
+# python performance.py .\csv\readspeech.csv
 
 import argparse
 import pandas as pd
@@ -12,16 +9,12 @@ def main(args):
     ovrScore = df['OVRL']
     groundTruth = df['P808_MOS']
     mse = round(((groundTruth - ovrScore)**2).mean(), 5)
-    print(f'Dataset: {args.name}, Personalisation = {args.personalisation}, MSE = {mse}')
+    print(f'Dataset: {args.filepath}, MSE = {mse}')
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--filepath',
+    parser.add_argument('filepath',
                         help='csv file path for analysis')
-    parser.add_argument('-n', '--name',
-                        help='Dataset name corresponding to the csv file')
-    parser.add_argument('-p', '--personalisation', action='store_true',
-                        help='Boolean value indicating whether personalisation was used')    
     
     args = parser.parse_args()
 
