@@ -14,6 +14,7 @@ import pandas as pd
 import soundfile as sf # Used for reading and writing sound files (e.g. in .wav format)
 from requests import session 
 from tqdm import tqdm
+import random
 
 SAMPLING_RATE = 16000
 INPUT_LENGTH = 9.01
@@ -105,7 +106,7 @@ class ComputeScore:
         return clip_dict
 
 def main(args):
-    models = glob.glob(os.path.join(args.testset_dir, "*"))
+    datasets = glob.glob(os.path.join(args.testset_dir, "*"))
     audio_clips_list = []
     p808_model_path = os.path.join('DNSMOS', 'model_v8.onnx')
 
@@ -121,15 +122,20 @@ def main(args):
     clips = glob.glob(os.path.join(args.testset_dir, "*.wav"))
     is_personalized_eval = args.personalized_MOS
     desired_fs = SAMPLING_RATE
-    for m in tqdm(models):
+    for d in tqdm(datasets):
         max_recursion_depth = 10
-        audio_path = os.path.join(args.testset_dir, m)
+        # audio_path = os.path.join(args.testset_dir, m)
+        audio_path = d
         audio_clips_list = glob.glob(os.path.join(audio_path, "*.wav"))
         while len(audio_clips_list) == 0 and max_recursion_depth > 0:
             audio_path = os.path.join(audio_path, "**")
             audio_clips_list = glob.glob(os.path.join(audio_path, "*.wav"))
             max_recursion_depth -= 1
         clips.extend(audio_clips_list)
+
+    # Randomly select 250 audio samples
+    if len(clips) > 250:
+        clips = random.sample(clips, 250)
 
     # Parallelise score computation across the audio clips
     with concurrent.futures.ThreadPoolExecutor() as executor:
