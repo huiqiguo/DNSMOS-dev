@@ -7,9 +7,11 @@ import subprocess
 # Files should be stored inside a subfolder named 'csv'
 files = [
     'readspeech.csv',
-    'readspeech_p.csv',
+    'readspeech_personalised.csv',
+    'emotionalspeech.csv',
+    'emotionalspeech_personalised.csv',
     'vocalset48khzmono.csv',
-    'vocalset48khzmono_p.csv'
+    'vocalset48khzmono_personalised.csv'
 ]
 
 for file in files:
