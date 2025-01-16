@@ -1,0 +1,8 @@
+MSE Values:
+1. readspeech without personalisation:
+2. readspeech with personalisation:
+3. emotionalspeech without personalisation:
+4. emotionalspeech with personalisation:
+5. vocalset48khzmono without personalisation:
+6. vocalset48khzmono with personalisation:
+

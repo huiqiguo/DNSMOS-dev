@@ -1,0 +1,15 @@
+# Documentation for Implementing DNSMOS
+
+1. Download audio files, cwd = /DNS-Challenge
+  * Modify ./download-dns-challege-4.sh. Uncomment the datasets to select them.
+  * Unzip and migrate the folder containing .wav files to ./DNSMOS/datasets.
+
+2. Generate csv files containing MOS scores, cwd = /DNS-Challenge/DNSMOS
+  * Run ./dnsmos_local.py to generate csv file for the specified dataset.
+  * E.g. python dnsmos_local.py -t ./datasets/emotionalspeech -o ./csv/emotionalspeech.csv
+  * Use the -p flag to generate MOS scores using the personalised DNSMOS model.
+  * E.g. python dnsmos_local.py -t ./datasets/emotionalspeech -o ./csv/emotionalspeech_personalised.csv -p
+  * Number of audio samples to use is a tunable parameter in ./dnsmos_local.py. Default is 250 random samples.
+
+3. Analyse csv files to compute MSE for each dataset, cwd = /DNS-Challenge/DNSMOS
+  * Modify ./runEval.py to include the names of all csv files and run the script.
