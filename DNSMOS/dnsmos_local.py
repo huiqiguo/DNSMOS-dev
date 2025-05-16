@@ -132,9 +132,9 @@ def main(args):
             max_recursion_depth -= 1
         clips.extend(audio_clips_list)
 
-    # Randomly select 250 audio samples
-    if len(clips) > 250:
-        clips = random.sample(clips, 250)
+    # Randomly select 10 audio samples
+    if len(clips) > 10:
+        clips = random.sample(clips, 10)
 
     # Parallelise score computation across the audio clips
     with concurrent.futures.ThreadPoolExecutor() as executor:
