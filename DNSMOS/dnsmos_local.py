@@ -92,13 +92,7 @@ class ComputeScore:
             predicted_p808_mos.append(p808_mos)
 
         clip_dict = {'filename': fpath, 'len_in_sec': actual_audio_len/fs}
-        # clip_dict = {'filename': fpath, 'len_in_sec': actual_audio_len/fs, 'sr':fs}
-        # clip_dict['num_hops'] = num_hops
-        # Raw scores
-        # clip_dict['OVRL_raw'] = np.mean(predicted_mos_ovr_seg_raw)
-        # clip_dict['SIG_raw'] = np.mean(predicted_mos_sig_seg_raw)
-        # clip_dict['BAK_raw'] = np.mean(predicted_mos_bak_seg_raw)
-        # Adjusted scores
+        # Scores
         clip_dict['OVRL'] = np.mean(predicted_mos_ovr_seg)
         clip_dict['SIG'] = np.mean(predicted_mos_sig_seg)
         clip_dict['BAK'] = np.mean(predicted_mos_bak_seg)
